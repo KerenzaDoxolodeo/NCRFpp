@@ -393,7 +393,7 @@ class CRF(nn.Module):
             # print "back:",back_points[idx][3]
             # print "mask:",mask[idx+1,3]
             new_pointer = torch.gather(back_points[idx].view(batch_size, tag_size*nbest), 1, pointer.contiguous().view(batch_size,nbest))
-            decode_idx[idx] = new_pointer.data/nbest
+            decode_idx[idx] = new_pointer.data//nbest
             # # use new pointer to remember the last end nbest ids for non longest
             pointer = new_pointer + pointer.contiguous().view(batch_size,nbest)*mask[idx].view(batch_size,1).expand(batch_size, nbest).long()
 
