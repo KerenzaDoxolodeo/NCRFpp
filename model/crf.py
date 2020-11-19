@@ -384,7 +384,7 @@ class CRF(nn.Module):
         decode_idx = autograd.Variable(torch.LongTensor(seq_len, batch_size, nbest))
         if self.gpu:
             decode_idx = decode_idx.cuda()
-        decode_idx[-1] = pointer.data/nbest
+        decode_idx[-1] = pointer.data//nbest
         # print "pointer-1:",pointer[2]
         # exit(0)
         # use old mask, let 0 means has token
